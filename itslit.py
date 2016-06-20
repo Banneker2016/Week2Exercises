@@ -1,20 +1,4 @@
-#reinvented last week's file...
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @mgshort
- Watch 2
-  Star 0
- Fork 0 Banneker2016/Week2Exercises
- Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathWeek2Exercises/Lauren_asteroids.py
-08a594f  13 minutes ago
- Lauren Chambers Lauren's asteroid example
-0 contributors
-RawBlameHistory     58 lines (55 sloc)  3.77 KB
+#Lauren has a love code therefore I'm... taking it...BWAHAHA
 Asteroids = [('Eros', 1.457916888347732, 0.2226769029627053, 'AMO'),
              ('Albert', 2.629584157344544, 0.551788195302116, 'AMO'),
              ('Alinda', 2.477642943521562, 0.5675993715753302, 'AMO'),
