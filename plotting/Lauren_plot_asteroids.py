@@ -3,7 +3,8 @@
 # Pushed into GitHub repository:
 #           https://github.com/Banneker2016/Week2Exercises/tree/master/plotting
 
-import Lauren_asteroids # Import functions and data defined in Lauren_asteroids.py
+import "https://github.com/Banneker2016/Week2Exercises/blob/master/Lauren_asteroids.py" 
+# Import functions and data defined in Lauren_asteroids.py
 import matplotlib.pyplot as plt # Import matplotlib plotting module
 import numpy as np # Import numeric python module
 
