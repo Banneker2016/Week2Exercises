@@ -1,20 +1,11 @@
-#reinvented last week's file...
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @mgshort
- Watch 2
-  Star 0
- Fork 0 Banneker2016/Week2Exercises
- Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathWeek2Exercises/Lauren_asteroids.py
-08a594f  13 minutes ago
- Lauren Chambers Lauren's asteroid example
-0 contributors
-RawBlameHistory     58 lines (55 sloc)  3.77 KB
+"""
+    NAME: Luis E. Nunez
+    ASSIGNMENT: Use (1) a loop and (2) a list coprehension to find all the
+    near-earth Asteroids with a < 1.2 and e < 0.5. Each element is
+    (name, semi-major axis (AU), eccentricity, orbit class)
+    source: http://ssd.jpl.nasa.gov/sbdb_query.cgi
+    """
+
 Asteroids = [('Eros', 1.457916888347732, 0.2226769029627053, 'AMO'),
              ('Albert', 2.629584157344544, 0.551788195302116, 'AMO'),
              ('Alinda', 2.477642943521562, 0.5675993715753302, 'AMO'),
@@ -68,10 +59,24 @@ Asteroids = [('Eros', 1.457916888347732, 0.2226769029627053, 'AMO'),
 
 orbit_class = {'AMO':'Amor', 'APO':'Apollo', 'ATE':'Aten'}
 
-def near_earth(Asteroids=Asteroids):
-    return [name for (name, a,e, t) in Asteroids if abs(a - 1) < 0.2 and e < 0.5]
+#Using loops:
+"""L = []
+for data in Asteroids:
+    name, a, e, t = data
+    if abs(a - 1) < 0.2 and e < 0.5:
+        L.append(name)
+print "Asteroids near Earth:",(L)"""
 
-def Asteroid_dict(Asteroids=Asteroids):
-     return {name:(a,e,t) for (name, a,e,t) in Asteroids}
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
+
+
+#Using list comrehension:
+near_Earth = [name for (name, a, e, t) in Asteroids if abs(a - 1) < 0.2 and e < 0.5]
+#print "Asteroids near Earth:",near_Earth
+
+
+
+
+
+
+
+
