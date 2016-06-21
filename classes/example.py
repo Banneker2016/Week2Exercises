@@ -1,3 +1,6 @@
+# example taken from the excellent blog post about classes at 
+# https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/
+
 class Customer(object):
     """A customer of ABC Bank with a checking account. Customers have the
     following properties:
