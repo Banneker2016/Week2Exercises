@@ -100,7 +100,7 @@ L4 = [e[2] for e in Asteroids if e[3] == 'ATE' ]
 #print L3
 #print L4
 
-#-----List For Eccentricity
+#-----List For Semi-Major Axis
 
 L5 = [a[1] for a in Asteroids if a[3] == 'AMO' ]
 
@@ -118,16 +118,20 @@ L7 = [a[1] for a in Asteroids if a[3] == 'ATE' ]
 
 
 #----Colors for Class Type
-#AMO = black
+#AMO = red
 #APO = blue
-#ATE = cyan
+#ATE = yellow
 
-plt.plot([L2], [L5], 'ko', [L3], [L6], 'bo' , [L4], [L7], 'co')
+plt.scatter([L2], [L5], marker = 'o', color = 'r', label = 'Amor')
+plt.scatter([L3], [L6], marker = 'o', color = 'b', label = 'Apollo')
+plt.scatter([L4], [L7], marker = 'o', color = 'y', label = 'Aten',)
 plt.axis([0, 1, 0, 3])
 plt.xlabel('Eccentricity')
 plt.ylabel('Semi-Major Axis')
 plt.title('Semi-Major Axis vs Eccentricty')
+plt.legend(loc = 'upper right')
 plt.show()
+
 
 
 
