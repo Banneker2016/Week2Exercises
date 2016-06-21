@@ -4,7 +4,7 @@
 #                                           #
 #      Date Created: Monday, 06/20/2016     #
 #                                           #
-#      Title: Asteroid Assignment           #
+#      Title: Asteroid Plot                 #
 #                                           #
 #                                           #
 #                                           #
@@ -86,7 +86,10 @@ orbit_class = {'AMO':'Amor', 'APO':'Apollo', 'ATE':'Aten'}
         ################################  Lists  #############################
 
 
+
+#----From Assignment 1
 #L = [name[0] for name in Asteroids if abs(name[1] - 1) < 0.2 and name[2] < 0.5 ]
+
 
 #-----List For Eccentricity
 
@@ -132,7 +135,7 @@ plt.title('Semi-Major Axis vs Eccentricty')
 plt.legend(loc = 'upper right')
 plt.show()
 
-
+################################################################# END ####################################################################
 
 
 
