@@ -1,0 +1,42 @@
+Banneker 2016 Data Challenge: A Celebration of Your Newfound Python Skills
+@benmontet, 2016
+
+The rules:
+
+You have some data. It's in a file called data.txt. You are not allowed to edit data.txt. You are allowed to use anything 
+you've learned the past two weeks, anything you can find online, or anything you knew previously to write Python code 
+to manipulate the data.
+
+1) Load the data. This is a three-column text file. The data columns are time, data (whatever you want it to be), and 
+uncertainty on the data measurement. Some of the data are bad (the data value are NaN) so you should mask those.
+
+2) Plot the data. What does it look like?
+
+You should note here that the instrument that produces these data sometimes breaks down, and in that case returns
+-999.000. These numbers represent No Data, an observation wasn't really taken, so you should ignore those too.
+
+3) Fit a line to these data.
+
+4) What is the slope of this line? What is the y-intercept? What (does Python tell you) are the uncertainties on 
+these estimates?
+
+5) Plot the data, your line, and your uncertainities in the slope of the line. 
+
+6) Plot the residuals to your fit. 
+
+(For an added challenge, if you're here early try to plot steps 5 and 6 on the same plot, like Figure 4 and 5
+of arxiv.org/pdf/1411.4047v2.pdf)
+
+7) Do the error bars seem reasonable? If the noise in the data is perfectly white and Gaussian (and I promise you that
+it is), you would expect 68% of the data to fall within one sigma of the best-fit, 95% within 2 sigma, and 99.7% within
+3 sigma. Is that the case? What are the real numbers?
+
+8) How much larger or smaller, if any, should the error bars be? If you know how to, try to fit for the optimal
+size of the error bars. Otherwise, try to manually tweak them until they seem reasonable, following the criteria from (7).
+
+9) Re-fit. Do the new error bars affect your estimate of the slope or intercept? What about your estimate of the uncertainties?
+
+10) If you still have time, plot the line again, this time showing the original and new (if they're different) fits to the data
+along with your uncertainties in the slope and intercept.
+
+11) Push your results into the repository and be ready to show off your work!
