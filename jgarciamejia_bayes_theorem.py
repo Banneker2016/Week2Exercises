@@ -5,14 +5,25 @@ Created on Tue Jun 28 09:50:14 2016
 @author: jgarciamejia
 """
 
-#import matplotlib
+## COMMENT ALL THE CODE NICELY AFTER YOU ARE DONE
+
+import matplotlib
 from matplotlib import pyplot as plt
 import numpy as np
 
-def my_prior(B):
+#configure matplotlib sans-serif math for prettier plots :) 
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams['text.latex.preamble'] = [\
+  r'\usepackage{siunitx}',\
+  r'\sisetup{detect-all}',\
+  r'\usepackage{avant}',\
+  r'\usepackage{sansmath}',\
+  r'\sansmath']
+
+def my_prior_attempt(B):
     """
-    takes an array with biases from 0 to 1
-    returns an array of prior probability P(B|I)
+    Takes an array of biases between 0 to 1
+    Prints a histogram with the distribution of biases - normalized
     """
     #prior = np.histogram(B,10)
     #x_prior = np.linspace(0,1,len(B))
@@ -27,68 +38,55 @@ def my_prior(B):
     
 def my_prior2(B):
     """
-    returns a probability density
+    Returns a prior. Right now the prior is a uniform distribution
     """
     return 1
-    #return prior
+
+# Run to test above code
 #Bt = np.linspace(0,1,100)
-#my_prior(Bt)
+#my_prior_attempt(Bt)
 
 
-def likelihood(D, B, N, K): ## should be a y = x looking plot 
+def likelihood_attempt(B, N, K): ## should be a y = x looking plot 
     """
-    Likelihood is defined as the probability of obtaining a give data set
-    given a hypothesis, where the hyporthesis is encoded in a bias factor so 
-    for example if we flip a coin we can either get heads-H or tails-T. 
-    So the likelihood
+    Likelihood is defined as the probability of obtaining a given data set
+    given a hypothesis, where the hyporthesis is encoded in a bias factor. 
+    As an example, if we flip a coin we can either get heads-H or tails-T. 
+    So the likelihood for one coin flip will be given by:
     
     P({D} = H | B) = B
     P({D} = T | B) = 1 - B
     
-    This function
-    takes a data array D and a bias B  and returns the likelihood
+    This function takes:
+    - B: bias
+    - K: amount of heads
+    - N: total amount of flips
+    
+    Returns the likelihood of the data set or the functional form of P({D}|B,N,K,I)
     """
     return B**K * (1 - B)**(N - K)
-    #if D:
-    #    return B
-    #else:
-    #   return (1 - B)
-
-# The functional form of P({D}|B,N,K,I) = B**K (1 - B)**(N - K)
-# Find code that returns posterior
 
 def likelihood2(D, B):
     """
-    Same as above except this function generates a random K
-    H = 1
-    T = 0
+    Takes a data set array of H and T (or 1 and 0, respectively),
+    determines K & N- K, and returns the likelihood for the given B, K and N
     """
     K = len([ heads for heads in D if heads == 1 or heads == 'H'])
     NminK = len([ tail for tail in D if tail == 0 or tail == 'T'])
     return B**K * (1 - B)**NminK
 
+    
+def posterior(D,B):
+    """
+    Recall from Bayes Theorem
+    P(Hypothesis|Data, Information) = P(Hyp|Info) * P(Data|Hyp,Info) / P(Data|Info)
+    In English
+    Posterior = Prior * Likelihood / NormalizationConstant
 
-def posterior(D,B,N,K):
-    """
-    Feed it an array of data points D and an array of biases B
-    As well as an amount of flips N and an amount of heads K
+    This function:
+    Takes an array of coin flips (H and T or 1 and 0, respectively) and a bias B
+    Returns the unnormalized posterior
     
-    Return the posterior given a data set, the prior and the likelihood
-    """
-    # obtain the prior for the hypothesis
-    prior = my_prior2(B)
-    # obtain the likelihood
-    likel = likelihood(D,B,N,K)
-    # return prior times likelihood
-    return prior * likel
-    # return posterior
-    
-def posterior2(D,B):
-    """
-    Feed it an array of data points D and an array of biases B
-    As well as an amount of flips N and an amount of heads K
-    
-    Return the posterior given a data set, the prior and the likelihood
     """
     # obtain the prior for the hypothesis
     prior = my_prior2(B)
@@ -100,30 +98,42 @@ def posterior2(D,B):
 
 # plot P(B | N, K)
     
-def plotposterior(D,B):
-    # generating 10 evenly spaced numbers betweeon 0 and 1
-    B = np.linspace(0,1,10) ## hardocoded 10
+def plotposterior(D):
+    """
+    """
+    # generate 10 evenly spaced numbers betweeon 0 and 1
+    B = np.linspace(0,1,50) ## hardcoded number of points shown
     # initialize a posterior list
     posterior_list = []
     # populate the posterior list
     for number in B:
-        posterior_list.append(posterior2(D,number))
-    # plot the posterior list 
-    plt.plot(B,posterior_list)
-    plt.show()
+        posterior_list.append(posterior(D,number))
+    # plot the posterior
+    # initialize figure and axes
+    fig = plt.figure(figsize=(4,4)) 
+    ax1 = fig.add_axes([0.1,0.15,0.88,0.80]) # rectangle: left, bottom, width, height
+    # plot data 
+    plt.plot(B,posterior_list, '+', markersize=12, color = 'c', markeredgewidth=4)
+    # labels
+    ax1.set_xlabel(r'\textbf{Bias (B)}', fontsize=16)
+    ax1.set_ylabel(r'\textbf{Posterior P(B \textbar N,K)}', fontsize=16)
+    ax1.set_title(r'\textbf{Unnormalized PDF}', fontsize=18)
+    # modify axes to make the ticks and spines thicker
+    ax1.tick_params(axis='both',which='major',length=8,width=2,labelsize=16)
+    [ii.set_linewidth(2) for ii in ax1.spines.itervalues()] ## this is to modify the spine -> 
+    ## which is the border of the plot and make it thicker - I do width 2
     
+    # call legend and show plot
+    #plt.legend(loc = 'upper left')
+    plt.show()
     return posterior_list
     
 
-data_set = ['H']
+data_set1 = ['H']
+data_set2 = ['H', 'T']
+data_set3 = ['H', 'T', 'T']
+plotposterior(data_set1)
+plotposterior(data_set2)
+plotposterior(data_set3)
 
-#plotposterior(data_set,0.5)
-
-"""
-if d:
-    return b
-else: 
-    return (1-b)
-"""
-### for every value of B the likelihood of getting B is 
-# Johnson most cited papers what is the bias of having a planet
+# Prof. Johnson one of most cited papers uses this: what is the bias of having a planet?
